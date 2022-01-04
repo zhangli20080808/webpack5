@@ -11,4 +11,14 @@
 对应模块的重新构建
 快照可以理解为对打包后的文件拍个照片
 
-### 
+### 资源模块
+1. raw-loader - asset/source 导出资源的源代码
+2. file-loader - asset/resource 发送一个单独的文件并导出 url
+3. url-loader - asset/inline 导出一个资源的 data url
+
+5不需要以上三个loader
+
+asset在导出一个资源的 data url和发送一个单独的文件并导出 url之间自动选择，之前通过使用url-loader，
+并且配置资源体积限制实现
+4. Rule.type
+5. asset-modules

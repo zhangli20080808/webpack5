@@ -71,6 +71,7 @@ module.exports = {
         test: /\.jpg$/,
         type: 'asset', //对标raw-loader
         parser: {
+          // 大于最大值走resource，不然走inline
           dataUrlCondition: {
             maxSize: 4 * 1024,
           },
