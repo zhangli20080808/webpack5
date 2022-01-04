@@ -10,6 +10,7 @@ module.exports = {
     usedExports: true, //标使用到的导出
     moduleIds: 'named', //模块名称的生成规则
     chunkIds: 'named', //代码块名称的生成规则
+    // 模块名不变，打包出来的hash不变 deterministic实现一个长期缓存
   },
   resolve: {
     /* fallback:{

@@ -22,3 +22,11 @@ asset在导出一个资源的 data url和发送一个单独的文件并导出 ur
 并且配置资源体积限制实现
 4. Rule.type
 5. asset-modules
+
+### URIs
+1.webpack5支持在请求中处理协议
+```js
+import data from 'data:text/javascript,export default "title"'
+console.log(data) // title
+```
+### chunk优化
