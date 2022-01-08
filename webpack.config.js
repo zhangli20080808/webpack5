@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   mode: 'development',
   devtool: false,
@@ -7,17 +8,19 @@ module.exports = {
     main: './src/index.js',
   },
   optimization: {
-    usedExports: true, //标使用到的导出
-    moduleIds: 'named', //模块名称的生成规则
+    usedExports: true, //标注使用到的导出
+    moduleIds: 'named', //模块名称的生成规则 named 包含路径信息
     chunkIds: 'named', //代码块名称的生成规则
     // 模块名不变，打包出来的hash不变 deterministic实现一个长期缓存
   },
   resolve: {
+    // 配置三个备份，如果需要polyfill，不需要，配置false即可
     /* fallback:{
             'crypto':require.resolve('crypto-browserify'),
             'stream':require.resolve('stream-browserify'),
             'buffer':require.resolve('buffer')
         }, */
+    // 备胎回退
     fallback: {
       crypto: false,
       stream: false,

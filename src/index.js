@@ -7,3 +7,5 @@
 // console.log(png); // http://localhost:8080/31d6cfe0d16ae931b73c.png
 // console.log(txt); // logo
 // console.log(jpg); // data:image/jpeg;base64,
+// import './index.css';
+// import './title';

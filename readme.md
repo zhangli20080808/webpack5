@@ -30,3 +30,49 @@ import data from 'data:text/javascript,export default "title"'
 console.log(data) // title
 ```
 ### chunk优化
+### 移除nodejs的polyfill
+1. webpack4中带了需要nodejs核心模块，一旦模块中使用了其他核心模块crypto，这些模块就会被自动启用，被打包进来
+2. webpack5中不再自动引入这些polyfill
+### 更强大的tree-shaking
+1. tree-shaking就是在打包的时候剔除无用的代码
+2. webpack4本身的tree-shaking是比较简单的，主要是找一个import进来的变量是否在这么模块内出现过
+3. webpack5可以进行根据作用域之间的关系进行优化
+```js
+// 打包的时候会自动剔除 
+// index.js
+import { function1 } from './module1';
+console.log(function1)
+// module1.js
+import { function3 } from './module2';
+export function function1() {
+  console.log('function1');
+}
+export function function2() {
+  console.log('function2' + function3);
+}
+// module2.js
+export function function3(){
+    console.log('function3');
+}
+export function function4(){
+    console.log('function4');
+}
+```
+### sideEffects -package.json配置
+1. 函数副作用指 调用函数时，除了返回函数值之外，还产生了附加的影响，例如修改全局变量
+2. 严格的函数式语言要求函数必须无副作用
+3. css文件也可以进行配置，要不要走tree-shaking
+```js
+// index.js
+import './title.js'
+import './index.css'
+// title.js
+document.title = 'zl'
+export function getTitle(){
+  // 
+}
+// package.json 留下css，打包之后，干掉title
+sideEffects:["*.css"]
+```
+### 模块联邦
+ 
