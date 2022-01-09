@@ -1,7 +1,7 @@
 import React from 'react';
 const NewsList = ()=>(
     <div>
-      NewsList-change1
+      NewsList-change
     </div>
 )
 export default NewsList;

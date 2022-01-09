@@ -75,7 +75,9 @@ export function getTitle(){
 sideEffects:["*.css"]
 ```
 ### 模块联邦
-
+* 使用模块联邦時，每個應用都是一個獨立的構建，這件構建都將編譯為容器
+* 容器可以被其他應用或者其他應用應用
+* 一个被引用的容器被称为 - remote，引用者被称为 - host。remote暴露模块给host，host则可以使用这些暴露的模块，这些模块被称为 remote 模块
 1. remote
 ```js
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
