@@ -1,25 +1,34 @@
+## 
+启动方式  webpack-dev-server -> webpack serve, webpack-dev-server依赖包仍然需要安装
 ## 重点更新
-1. 持久化缓存
+1. 持久化缓存 - 缓存写入
 2. tree-shaking
-3. 模块联邦
+3. 模块联邦 
 
 ### 持久化缓存 - 通过设置cache
 1. webpack会缓存生成webpack模块和chunk，并改善构建速度 - node_modules/.cache
 之前我们会通过babel-loader设置缓存，5中内置
-2. webpack5中默认开启，缓存默认是在内存里，但可以对cache进行设置
-3. webpack追踪每个模块的依赖，并创建文件系统快照，次快照会与真实文件系统进行比较，当检测到差异时，会触发
-对应模块的重新构建
-快照可以理解为对打包后的文件拍个照片
+2. webpack5中默认开启，缓存默认是在内存里(速度快)，但可以对cache进行设置 1. memory 2. filesystem (缓存写入硬盘，不管什么时候编译都能使用上次的缓存，之前是不行的)
+3. webpack会追踪每个模块的依赖，并创建文件系统快照 (记录每个文件，模块和他的依赖，当依赖发生变更，重新编译)
+这个快照会与真实文件系统进行比较，当检测到差异时，会触发对应模块的重新构建
+快照 - 可以理解为对打包后的文件拍个照片
 
-### 资源模块
-1. raw-loader - asset/source 导出资源的源代码
-2. file-loader - asset/resource 发送一个单独的文件并导出 url
-3. url-loader - asset/inline 导出一个资源的 data url
+### 资源模块 
+模块类型，允许使用资源文件(字体，图标)而无需配置额外的loader
+1. raw-loader -> asset/source 导出资源的源代码 - 源码资源
+2. file-loader -> asset/resource 发送一个单独的文件并导出 url
+3. url-loader -> asset/inline 导出一个资源的 data url
 
-5不需要以上三个loader
+webpack5不需要以上三个loader
 
-asset在导出一个资源的 data url和发送一个单独的文件并导出 url之间自动选择，之前通过使用url-loader，
+asset在导出一个资源的 data URI和发送一个单独的文件之间自动选择，之前通过使用url-loader，
 并且配置资源体积限制实现
+```js
+  {
+    test: /\.png$/,
+    type: "asset/resource", //对标file-loader
+  }
+```
 4. Rule.type
 5. asset-modules
 
