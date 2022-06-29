@@ -1,6 +1,6 @@
-import React from 'react';
-const RemoteSlides = React.lazy(()=>import('host/Slides'));
-const RemoteNewList = React.lazy(()=>import('remote/NewsList'));
+import React from "react";
+const RemoteHostSlides = React.lazy(() => import("hostApp/Slides"));
+const RemoteAppNewList = React.lazy(() => import("remoteApp/NewsList"));
 //TopAwait webpack5的新语法
 
 // let RemoteNewList = await import('remote/NewsList');
@@ -21,17 +21,17 @@ const RemoteNewList = React.lazy(()=>import('remote/NewsList'));
     }
 } */
 
-const App = ()=>(
-    <div>
-         <h3>远程组件RemoteSlides</h3>
-        <React.Suspense fallback="Loading RemoteSlides">
-            <RemoteSlides/>
-        </React.Suspense>
-        <hr/>
-        <h3>远程组件NewsList</h3>
-        <React.Suspense fallback="Loading NewsList">
-            <RemoteNewList/>
-        </React.Suspense>
-    </div>
-)
+const App = () => (
+  <div>
+    <h3>远程组件 hostApp - Slides</h3>
+    <React.Suspense fallback="Loading RemoteSlides">
+      <RemoteHostSlides />
+    </React.Suspense>
+    <hr />
+    <h3>远程组件 remoteApp - NewsList</h3>
+    <React.Suspense fallback="Loading NewsList">
+      <RemoteAppNewList />
+    </React.Suspense>
+  </div>
+);
 export default App;

@@ -31,11 +31,11 @@ module.exports = {
       template: './public/index.html', 
     }),
     new ModuleFederationPlugin({
-      name: 'hostVar',
+      name: 'hostApp',
       filename:'remoteEntry.js',
       // 指向一個遠程地址  remoteVar 代表全局變量名，消費遠程的組件
       remotes: {
-        remote: 'remoteVar@http://localhost:8082/remoteEntry.js',
+        remoteApp: 'remoteApp@http://localhost:8082/remoteEntry.js',
       },
       exposes: {
         './Slides': './src/Slides',

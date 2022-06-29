@@ -32,8 +32,8 @@ module.exports = {
     }),
     new ModuleFederationPlugin({
       remotes: {
-        remote: 'remoteVar@http://localhost:8082/remoteEntry.js',
-        host: 'hostVar@http://localhost:8081/remoteEntry.js',
+        remoteApp: 'remoteApp@http://localhost:8082/remoteEntry.js',
+        hostApp: 'hostApp@http://localhost:8081/remoteEntry.js',
       },
       shared: ['react', 'react-dom'],
     }),

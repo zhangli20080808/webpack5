@@ -32,7 +32,7 @@ module.exports = {
     }),
     //
     new ModuleFederationPlugin({
-      name: 'remoteVar', // remote向外暴露的全局变量名
+      name: 'remoteApp', // remote向外暴露的全局变量名
       //构建出来的文件名，名字随便写，其实就是容器向外暴露的时候会提供一个文件，名字就是remoteEntry
       filename: 'remoteEntry.js', 
       // 可以暴露多个组件
@@ -40,7 +40,7 @@ module.exports = {
         './NewsList': './src/NewsList',
       },
       remotes: {
-        host: 'hostVar@http://localhost:8081/remoteEntry.js',
+        hostApp: 'hostApp@http://localhost:8081/remoteEntry.js',
       },
       shared: ['react', 'react-dom'],
     }),
